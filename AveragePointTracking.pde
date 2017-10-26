@@ -14,7 +14,7 @@ void setup() {
   tracker = new KinectTracker();
   ini = false;
   String COM = Serial.list()[2];
-  puerto = new Serial(this, "/dev/ttyUSB0", 9600);
+  puerto = new Serial(this, "/dev/ttyUSB1", 115200);
   //comunicacion serial a 9600bps
 
 }
@@ -49,18 +49,24 @@ void elevacion(PVector v){
   // ajuste con la fuente trackerX
   
   if (trackerX > 0 && trackerX < 200){
-    puerto.write("x0");
+    puerto.write("x0\n");
     println("% 0 en x");
     println(trackerX);
   }
   
-  if (trackerX > 200 && trackerX < 500){
-    puerto.write("x450");
-    println("% 0 en x");
+  else if (trackerX > 200 && trackerX < 500){
+    puerto.write("x100\n");
+    println("% 30 en x");
+    println(trackerX);
+  }
+  
+  else  if (trackerX > 500 && trackerX < 700){
+    puerto.write("x300\n");
+    println("% 70 en x");
     println(trackerX);
   }
 
-  if (trackerX > 500 && trackerX < 1000){
+  else if (trackerX > 500 && trackerX < 1000){
     puerto.write("x500");
     println("% 100 en x");
     println(trackerX);
@@ -74,8 +80,15 @@ void elevacion(PVector v){
   }
   
   
+  
   if (trackerY > 200 && trackerY < 500){
-    puerto.write("y450");
+    puerto.write("y300");
+    println("% 0 en y");
+    println(trackerY);
+  }
+  
+    if (trackerY > 500 && trackerY < 700){
+    puerto.write("y100");
     println("% 0 en y");
     println(trackerY);
   }

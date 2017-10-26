@@ -1,29 +1,21 @@
 
 class KinectTracker {
 
-  // Depth threshold
   int threshold = 745;
 
-  // Raw location
   PVector loc;
 
-  // Interpolated location
   PVector lerpedLoc;
 
   // Depth data
   int[] depth;
   
-  // What we'll show the user
   PImage display;
    
   KinectTracker() {
-    // This is an awkard use of a global variable here
-    // But doing it this way for simplicity
     kinect.initDepth();
     kinect.enableMirror(true);
-    // Make a blank image
     display = createImage(kinect.width, kinect.height, RGB);
-    // Set up the vectors
     loc = new PVector(0, 0);
     lerpedLoc = new PVector(0, 0);
   }
